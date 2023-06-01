@@ -8,7 +8,7 @@ export default function Index() {
     <div className="container-login">
       <div className="left-login">
         <div className="header-captions-login">
-          <h1 className="header-login">Create an account</h1>
+          <h1 className="header-login">Already have an account?</h1>
           <p className="subheader-login">Your personal job finder is here</p>
         </div>
 
@@ -17,55 +17,37 @@ export default function Index() {
           className="form-login"
           method="post"
         >
-          <input
-            type="text"
-            name="name"
-            className="name"
-            placeholder="Name"
-            autoFocus
-          />
+    
           <input
             type="email"
             name="email"
             className="email"
             placeholder="Email"
           />
-          <input
-            type="number"
-            name="number"
-            className="number"
-            placeholder="Mobile"
-          />
+          
           <input
             type="password"
             name="password"
             className="password"
             placeholder="Password"
           />
-          <div className="wrapper-checkbox">
-            <input type="checkbox" name="checkbox" className="checkbox" />
-            <p className="checkbox-caption-login">
-              By creating an account, I agree to our terms of use and privacy
-              policy
-            </p>
-          </div>
-
+        
           <button className="submit-login">
-            Create Account
+            Sign In
           </button>
         </form>
 
-        {true &&
+        {/* {true &&
         <div className="feedback">
             <p>*Required field is empty or not valid!</p>
         </div>
-        }
+        } */}
 
         <div className="login-login">
           <p className="login-caption">
-            Already have an account?{" "}
-            <a href="https://www.google.com/" className="login-url">
-              Sign In
+          Don’t have an account?{" "}
+            <a href="https://www.google.com/" className="register-url">
+              Sign Up
             </a>
           </p>
         </div>

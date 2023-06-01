@@ -66,11 +66,11 @@ export default function Index() {
           </button>
         </form>
 
-        {true &&
+        {/* {true &&
         <div className="feedback">
             <p>*Required field is empty or not valid!</p>
         </div>
-        }
+        } */}
 
         <div className="login-register">
           <p className="login-caption">
