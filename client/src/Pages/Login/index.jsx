@@ -1,9 +1,10 @@
 import React from "react";
 import "./style.css";
 // import axios from 'axios';
+import {useNavigate} from "react-router-dom"
 
 export default function Index() {
-
+  let navigate = useNavigate();
   return (
     <div className="container-login">
       <div className="left-login">
@@ -46,9 +47,11 @@ export default function Index() {
         <div className="login-login">
           <p className="login-caption">
           Don’t have an account?{" "}
-            <a href="https://www.google.com/" className="register-url">
+            <span onClick={() => {
+              navigate('/');
+            }} className="register-url">
               Sign Up
-            </a>
+            </span>
           </p>
         </div>
       </div>

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import "./style.css";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 export default function Index() {
   let [status, setStatus] = useState(0);
+  let navigate = useNavigate();
 
   let onSubmit = async () => {
     await axios.get(`${process.env.REACT_APP_HOST}/api/register`).then((res) => {
@@ -75,9 +77,11 @@ export default function Index() {
         <div className="login-register">
           <p className="login-caption">
             Already have an account?{" "}
-            <a href="https://www.google.com/" className="login-url">
+            <span onClick={() => {
+              navigate('/login');
+            }} className="login-url">
               Sign In
-            </a>
+            </span>
           </p>
         </div>
       </div>

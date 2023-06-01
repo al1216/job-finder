@@ -112,6 +112,7 @@ body {
 }
 
 .login-url {
+    cursor: pointer;
     font-family: 'DM Sans';
     font-style: normal;
     font-weight: 500;
