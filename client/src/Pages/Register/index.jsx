@@ -4,18 +4,7 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 
 export default function Index() {
-  let [status, setStatus] = useState(0);
   let navigate = useNavigate();
-
-  let onSubmit = async () => {
-    await axios.get(`${process.env.REACT_APP_HOST}/api/register`).then((res) => {
-        setStatus(res.data);
-    }).catch((err) => {
-        console.log(err);
-    })
-
-    console.log(status);
-  }
 
   return (
     <div className="container-register">
@@ -63,7 +52,7 @@ export default function Index() {
             </p>
           </div>
 
-          <button className="submit-register" onSubmit={() => onSubmit()}>
+          <button className="submit-register" type="submit">
             Create Account
           </button>
         </form>

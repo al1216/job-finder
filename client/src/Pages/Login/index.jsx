@@ -1,10 +1,30 @@
 import React from "react";
 import "./style.css";
-// import axios from 'axios';
+import axios from 'axios';
 import {useNavigate} from "react-router-dom"
 
-export default function Index() {
+function Index() {
   let navigate = useNavigate();
+
+  let submitLoginForm = async (e) => {
+    // e.preventDefault();
+    await axios.get(`${process.env.REACT_APP_HOST}/check/abc`).then((res) => {
+      const status = res.data.status;
+      if (status === 200) {
+        localStorage.clear();
+        let token = res.data.message;
+        let email = res.data.email;
+        localStorage.setItem('user-token',token);
+        localStorage.setItem('email',email);
+        
+        setTimeout(() => {
+          navigate('/job-post');
+        },500);
+      }
+    }).catch((err) => {
+      console.log(err);
+    })
+  }
   return (
     <div className="container-login">
       <div className="left-login">
@@ -17,6 +37,7 @@ export default function Index() {
           action={`${process.env.REACT_APP_HOST}/api/login`}
           className="form-login"
           method="post"
+          onSubmit={submitLoginForm}
         >
     
           <input
@@ -37,12 +58,6 @@ export default function Index() {
             Sign In
           </button>
         </form>
-
-        {/* {true &&
-        <div className="feedback">
-            <p>*Required field is empty or not valid!</p>
-        </div>
-        } */}
 
         <div className="login-login">
           <p className="login-caption">
@@ -65,3 +80,4 @@ export default function Index() {
     </div>
   );
 }
+export default Index;
