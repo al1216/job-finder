@@ -1,0 +1,368 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@500&display=swap');
+
+.container-main {
+    display: flex;
+    flex-direction: column;
+    gap: 5.5rem;
+    width: 100vw;
+    scroll-behavior: smooth;
+}
+
+.navbar {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 13.9rem;
+    background: #ED5353;
+    border-radius: 0px 0px 6.2rem 5.5rem;
+}
+
+.heading-main {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #FFFFFF;
+    position: absolute;
+    left: 4rem;
+
+}
+
+.buttons-main {
+    display: flex;
+    gap: 2rem;
+    position: absolute;
+    right: 4rem;
+}
+
+.login-main {
+    cursor: pointer;
+    width: 11.3rem;
+    height: 4.6rem;
+    background: #FF6B6B;
+    border: 0.2rem solid #FFFFFF;
+    border-radius: 0.7rem;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.3rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.register-main {
+    cursor: pointer;
+    width: 11.3rem;
+    height: 4.6rem;
+    background: #FFFFFF;
+    border: 0.2rem solid #FFFFFF;
+    border-radius: 0.7rem;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.3rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #ED5353;
+}
+
+.search-engine {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    width: 109.7rem;
+    height: 22.3rem;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 2.2rem 0.4rem rgba(255, 32, 32, 0.25);
+}
+
+.inputAndIcon {
+    display: flex;
+    align-items: center;
+    justify-content: baseline;
+    gap: 2rem;
+    padding-left: 1rem;
+    width: 94.6rem;
+    height: 6.2rem;
+    background: #FFFFFF;
+    border: 0.18rem solid #E3E3E3;
+    border-radius: 0.9rem;
+}
+
+.search-main {
+    width: 2.7rem;
+    height: 2.7rem;
+}
+
+.job-title {
+    border: none;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.3rem;
+    line-height: 144.02%;
+    color: #9C9C9C;
+    width: 94.6rem;
+    height: 6.2rem;
+}
+
+.job-title:focus {
+    outline: none;
+}
+
+.skillsAndClear {
+    display: flex;
+    gap: 2rem;
+    justify-content: space-between;
+    width: 94.6rem;
+}
+
+.skills-select {
+    width: 14.3rem;
+    height: 4.6rem;
+    background: #FFFFFF;
+    border: .2rem solid #CECECE;
+    border-radius: .9rem;
+    text-align: center;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 2rem;
+    color: #9C9C9C;
+
+}
+
+.skills-selected {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.skill-main {
+    display: flex;
+    width: 13.3rem;
+    height: 4.6rem;
+    background: #FFEEEE;
+    border-radius: .2rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.skill-name-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.skill-name {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.63846rem;
+    line-height: 144.02%;
+    /* text-align: center; */
+    color: #000000;
+    align-items: center;
+
+}
+
+.skill-cross {
+    cursor: pointer;
+    width: 4.1rem;
+    height: 4.6rem;
+    background: #FF6B6B;
+    border-radius: 0px .2rem .2rem 0px;
+    border: none;
+    color: white;
+    font-size: 2.5rem;
+}
+
+.skills-clear {
+    cursor: pointer;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #ED5353;
+}
+
+.search-engine-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.jobs-view-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.jobs-view {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 109.7rem;
+    height: 13.6rem;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 2.2rem .2rem rgba(255, 32, 32, 0.25);
+    padding: 2rem;
+}
+
+.left-job-details {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.company-log {
+    width: 5.5rem;
+    height: 5.5rem;
+}
+
+.job-infos {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: space-evenly;
+}
+
+.job-view-title {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.94942rem;
+    line-height: 89.19%;
+    color: #000000;
+
+}
+
+.job-position-salary-loc-info {
+    display: flex;
+    gap: 2rem;
+}
+
+.job-position {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.num-position-img {
+    width: 2.8rem;
+    height: 1.6rem;
+}
+
+.count-info,
+.salary-info,
+.loc-info {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.6rem;
+    line-height: 89.19%;
+    color: #9C9C9C;
+}
+
+.job-salary {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.salary-img {
+    width: 0.8rem;
+    height: 1.4rem;
+}
+
+.job-loc {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.india-img {
+    width: 3.3rem;
+    height: 3.3rem;
+}
+
+.job-type-role {
+    display: flex;
+    gap: 1.5rem;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.50987rem;
+    line-height: 89.19%;
+    color: #ED5353;
+}
+
+.right-job-details {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.skills-view-job {
+    display: flex;
+    gap: 1rem;
+    /* align-items: center;
+    justify-content: center; */
+}
+
+.box-skill-job {
+    width: 9.5rem;
+    height: 3.2rem;
+    background: #FFEEEE;
+    border-radius: 0.143339rem;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.59422rem;
+    line-height: 144.02%;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.skill-wrapper{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.view-details-job {
+    cursor: pointer;
+    width: 15.4rem;
+    height: 3.6rem;
+    background: #ED5353;
+    border-radius: .39223rem;
+    border: none;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.96115rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #FFFFFF;
+}

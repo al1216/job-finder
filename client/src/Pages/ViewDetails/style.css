@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Roboto:wght@500&display=swap');
+
+.container-view-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100vw;
+    scroll-behavior: smooth;
+    background-color: #FFEEEE;
+}
+
+.navbar {
+    box-sizing: content-box;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 13.9rem;
+    background: #ED5353;
+    border-radius: 0px 0px 6.2rem 5.5rem;
+}
+
+.heading-main {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 3rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #FFFFFF;
+    position: absolute;
+    left: 4rem;
+
+}
+
+.buttons-main {
+    display: flex;
+    gap: 2rem;
+    position: absolute;
+    right: 4rem;
+}
+
+.login-main {
+    cursor: pointer;
+    width: 11.3rem;
+    height: 4.6rem;
+    background: #FF6B6B;
+    border: 0.2rem solid #FFFFFF;
+    border-radius: 0.7rem;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.3rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.register-main {
+    cursor: pointer;
+    width: 11.3rem;
+    height: 4.6rem;
+    background: #FFFFFF;
+    border: 0.2rem solid #FFFFFF;
+    border-radius: 0.7rem;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.3rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #ED5353;
+}
+
+.wrapper-message-view-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* position: absolute;
+    top: 14%;
+    left: 11%; */
+}
+
+.job-company-greet {
+    width: 109.9rem;
+    height: 14.7rem;
+    background: #FFFFFF;
+    box-shadow: 0px .4rem 2.3rem .2rem rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.message-view-details {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.9rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #000000;
+}
+
+.wrapper-full-job-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 122rem;
+}
+
+.full-job-details-view {
+    display: flex;
+    flex-direction: column;
+    width: 109.9rem;
+    height: 110rem;
+    background: #FFFFFF;
+    box-shadow: 0px .2rem 3.5rem .1rem rgba(0, 0, 0, 0.1);
+    padding: 4rem;
+    box-sizing: border-box;
+}
+
+.timeAndType {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.2466rem;
+    color: #999999;
+    margin-bottom: 0;
+}
+
+.title-location-editJob {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-location {
+    display: flex;
+    flex-direction: column;
+}
+
+.job-title-view-details {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 4.5rem;
+    line-height: 144.02%;
+    color: #000000;
+    margin-bottom: 0;
+}
+
+.job-location-view-details {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.1rem;
+    line-height: 144.02%;
+    color: #ED5353;
+}
+
+.edit-job-view-details {
+    cursor: pointer;
+    width: 16.1rem;
+    height: 5.4rem;
+    background: #ED5353;
+    border-radius: .6rem;
+    border: none;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.1rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #FFFFFF;
+
+}
+
+.stipend-duration-view-details {
+    display: flex;
+    gap: 2rem;
+}
+
+.wrapper-stipend {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.stipend-img {
+    width: 2.8rem;
+    height: 2.8rem;
+}
+
+.stipend-caption,
+.duration-caption {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.5rem;
+    line-height: 164.5%;
+    color: #999999;
+}
+
+.stipendAmount,
+.durationAmount {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.5rem;
+    line-height: 144.02%;
+    color: #595959;
+}
+
+.wrapper-duration {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.calendar-img {
+    width: 2rem;
+    height: 2rem;
+}
+
+.about-company-caption,
+.about-job-caption,
+.skills-required-view-details,
+.additional-info-caption {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.4rem;
+    line-height: 169.52%;
+    color: #000000;
+    margin-bottom: 0;
+}
+
+.about-comapny-details,
+.about-job-details,
+.additional-info {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.8rem;
+    color: #595959;
+}
+
+.skills-view-details {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+
+.skills-name-view-details {
+    width: 14rem;
+    height: 3.9rem;
+    background: #FFEEEE;
+    border-radius: 2.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.skill-name-view-details {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 2.4rem;
+    line-height: 169.52%;
+    color: #595959;
+}

@@ -220,7 +220,7 @@ app.post(
   }
 );
 
-// check routes to throw jwt token
+// check route to throw jwt token
 
 app.get('/check/abc', async (req,res) => {
   // console.log(loggedInEmail);
@@ -231,6 +231,23 @@ app.get('/check/abc', async (req,res) => {
   });
 
   // res.json({status: 500, message: 'Something went wrong :('})
+})
+
+app.get('/get/jobs',async (req,res) => {
+  await Job.find().then((jobs) => {
+    res.json(jobs);
+  }).catch((err) => {
+    res.json({status: 400, message: 'No jobs found'})
+  });
+})
+
+app.get('/get/job/:id', async (req,res) => {
+  const {id} = req.params;
+  await Job.findById(id).then((job) => {
+    res.json(job);
+  }).catch((err) => {
+    res.json({status: 400, message: 'No job found'});
+  })
 })
 
 app.listen(process.env.SERVER_PORT, () => {
