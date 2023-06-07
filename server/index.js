@@ -164,21 +164,24 @@ app.post("/api/login", (req, res) => {
   User.findOne({ email })
     .then(async (user) => {
       let isMatched = await bcrypt.compare(password, user.password);
-      if (isMatched && jwt.verify(user.token, process.env.JWT_SECRET)) {
+      if (isMatched) {
         loggedInEmail = email;
         const temp = jwt.sign({ email, password }, process.env.JWT_SECRET, {
           expiresIn: "24h",
-      });
-        
-        let check = await User.findOneAndUpdate({email},{token: temp},{new:true});
-        // console.log(check.token);
-        res.redirect(`${process.env.HOST_URL}/job-post`);
+        });
 
+        let check = await User.findOneAndUpdate(
+          { email },
+          { token: temp },
+          { new: true }
+        );
+        // console.log(check.token);
+        res.redirect(`${process.env.HOST_URL}/`);
       } else res.redirect(`${process.env.HOST_URL}/login`);
     })
     .catch((err) => {
       console.log(err);
-      res.redirect(`${process.env.HOST_URL}/`);
+      res.redirect(`${process.env.HOST_URL}/register`);
     });
 });
 
@@ -201,6 +204,9 @@ app.post(
     } = req.body;
 
     skills = skills.split(",");
+    for (let i = 0; i < skills.length; i++) {
+      skills[i] = skills[i].trim();
+    }
 
     await Job.create({
       email: loggedInEmail,
@@ -222,33 +228,94 @@ app.post(
 
 // check route to throw jwt token
 
-app.get('/check/abc', async (req,res) => {
+app.get("/check/abc", async (req, res) => {
   // console.log(loggedInEmail);
-  await User.findOne({email: loggedInEmail}).then((user) => {
-    res.json({status: 200, message: user.token, email: loggedInEmail});
-  }).catch((err) => {
-    res.json({status: 400, message: 'Please login or create your account!'})
-  });
+  await User.findOne({ email: loggedInEmail })
+    .then((user) => {
+      res.json({ status: 200, message: user.token, email: loggedInEmail });
+    })
+    .catch((err) => {
+      res.json({
+        status: 400,
+        message: "Please login or create your account!",
+      });
+    });
 
   // res.json({status: 500, message: 'Something went wrong :('})
-})
+});
 
-app.get('/get/jobs',async (req,res) => {
-  await Job.find().then((jobs) => {
-    res.json(jobs);
-  }).catch((err) => {
-    res.json({status: 400, message: 'No jobs found'})
-  });
-})
+app.get("/get/jobs", async (req, res) => {
+  let { skillsArr, search } = req.query;
+  // console.log(skillsArr);
+  // console.log(search.length);
+  let name = search;
+  let reg = `.*${name}.*`;
+  let regex = new RegExp(reg, "i");
+  // console.log(skillsArr);
+  // console.log(regex);
+  if (!skillsArr && search.length === 0) {
+    await Job.find()
+      .then((jobs) => {
+        res.json(jobs);
+      })
+      .catch((err) => {
+        res.json({ status: 400, message: "No jobs found" });
+      });
+  }
+  if (skillsArr && search.length === 0) {
+    await Job.find({ skills: { $in: skillsArr } })
+      .then((jobs) => {
+        res.json(jobs);
+      })
+      .catch((err) => {
+        res.json({ status: 400, message: "No jobs found" });
+      });
+  }
+  if ((!skillsArr || skillsArr.length === 0) && search.length != 0) {
+    await Job.find({ jobPosition: { $regex: regex } })
+      .then((jobs) => {
+        res.json(jobs);
+      })
+      .catch((err) => {
+        res.json({ status: 400, message: "No jobs found" });
+      });
+  }
 
-app.get('/get/job/:id', async (req,res) => {
-  const {id} = req.params;
-  await Job.findById(id).then((job) => {
-    res.json(job);
-  }).catch((err) => {
-    res.json({status: 400, message: 'No job found'});
-  })
-})
+  if (skillsArr && search.length != 0) {
+    await Job.find({ jobPosition: { $regex: regex },skills: { $in: skillsArr } })
+      .then((jobs) => {
+        res.json(jobs);
+      })
+      .catch((err) => {
+        res.json({ status: 400, message: "No jobs found" });
+      });
+  }
+});
+
+app.get("/get/job/:id", async (req, res) => {
+  const { id } = req.params;
+  await Job.findById(id)
+    .then((job) => {
+      res.json(job);
+    })
+    .catch((err) => {
+      res.json({ status: 400, message: "No job found" });
+    });
+});
+
+app.get("/abc", async (req, res) => {
+  let title = "Internship";
+  let name = title;
+  let reg = `.*${name}.*`;
+  let regex = new RegExp(reg, "i");
+  await Job.find({ jobPosition: { $regex: regex } })
+    .then((jobs) => {
+      res.json(jobs);
+    })
+    .catch((err) => {
+      res.json({ status: 400, message: "No job found with required skills" });
+    });
+});
 
 app.listen(process.env.SERVER_PORT, () => {
   mongoose

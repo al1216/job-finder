@@ -6,10 +6,15 @@ import "./style.css";
 export default function Index() {
   let naviagte = useNavigate();
   let [job, setJob] = useState([]);
+  let [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     try {
       let id = localStorage.getItem("job_id");
+      let email = localStorage.getItem("email");
+      if (!email || email === "undefined") setLoggedIn(false);
+      else setLoggedIn(true);
+
       axios
         .get(`${process.env.REACT_APP_HOST}/get/job/${id}`)
         .then((res) => {
@@ -22,26 +27,45 @@ export default function Index() {
       console.log(err);
     }
   }, []);
+  let onClickLogout = () => {
+    localStorage.clear();
+    setLoggedIn(false);
+  };
   return (
     <div className="container-view-details">
       <div className="navbar">
         <h1 className="heading-main">Jobfinder</h1>
         <div className="buttons-main">
-          <button className="login-main" onClick={() => naviagte("/login")}>
-            Login
-          </button>
-          <button
-            className="register-main"
-            onClick={() => naviagte("/register")}
-          >
-            Register
-          </button>
+          {!loggedIn && (
+            <>
+              <button className="login-main" onClick={() => naviagte("/login")}>
+                Login
+              </button>
+              <button
+                className="register-main"
+                onClick={() => naviagte("/register")}
+              >
+                Register
+              </button>
+            </>
+          )}
+
+          {loggedIn && (
+            <>
+              <p className="logout-main" onClick={() => onClickLogout()}>
+                Logout
+              </p>
+              <p className="greet-recruiter">Hello! Recruiter</p>
+              <img src="avatar.png" alt="" className="avatar-img" />
+            </>
+          )}
         </div>
       </div>
       <div className="wrapper-message-view-details">
         <div className="job-company-greet">
           <p className="message-view-details">
-            {`${job.jobPosition} work from home job/internship at`} <br /> {`${job.companyName}`}
+            {`${job.jobPosition} work from home job/internship at`} <br />{" "}
+            {`${job.companyName}`}
           </p>
         </div>
       </div>

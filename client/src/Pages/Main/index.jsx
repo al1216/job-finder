@@ -7,17 +7,28 @@ export default function Index() {
   let naviagte = useNavigate();
   let [skillsArr, setSkillsArr] = useState([]);
   let [jobs, setJobs] = useState([]);
+  let [search, setSearch] = useState("");
+  let [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
+    let email = localStorage.getItem("email");
+    if (!email || email === "undefined") setLoggedIn(false);
+    else setLoggedIn(true);
+
     axios
-      .get(`${process.env.REACT_APP_HOST}/get/jobs`)
+      .get(`${process.env.REACT_APP_HOST}/get/jobs`, {
+        params: {
+          skillsArr: skillsArr,
+          search: search,
+        },
+      })
       .then((res) => {
         setJobs(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [skillsArr, search]);
 
   let onChange = (e) => {
     let temp = e.target.value;
@@ -39,35 +50,64 @@ export default function Index() {
   };
 
   let onClickViewDetails = (id) => {
-    localStorage.setItem('job_id',id);
+    localStorage.setItem("job_id", id);
     naviagte("/view-details");
-  }
+  };
+
+  let onChangeInput = (e) => {
+    setSearch(e.target.value);
+  };
+
+  let onClickLogout = () => {
+    localStorage.clear();
+    setLoggedIn(false);
+  };
 
   return (
     <div className="container-main">
       <div className="navbar">
         <h1 className="heading-main">Jobfinder</h1>
         <div className="buttons-main">
-          <button className="login-main" onClick={() => naviagte("/login")}>
-            Login
-          </button>
-          <button
-            className="register-main"
-            onClick={() => naviagte("/register")}
-          >
-            Register
-          </button>
+          {!loggedIn && (
+            <>
+              <button className="login-main" onClick={() => naviagte("/login")}>
+                Login
+              </button>
+              <button
+                className="register-main"
+                onClick={() => naviagte("/register")}
+              >
+                Register
+              </button>
+            </>
+          )}
+
+          {loggedIn && (
+            <>
+              <p className="logout-main" onClick={() => onClickLogout()}>
+                Logout
+              </p>
+              <p className="greet-recruiter">Hello! Recruiter</p>
+              <img src="avatar.png" alt="" className="avatar-img" />
+            </>
+          )}
         </div>
       </div>
       <div className="search-engine-wrapper">
         <div className="search-engine">
           <div className="inputAndIcon">
-            <img src="search-icon.png" alt="" className="search-main" />
+            <img
+              src="search-icon.png"
+              alt=""
+              className="search-main"
+              onChange={(e) => onChangeInput(e)}
+            />
             <input
               type="text"
               name="job-title"
               className="job-title"
               placeholder="Type any job title"
+              onChange={(e) => onChangeInput(e)}
             />
           </div>
 
@@ -85,7 +125,9 @@ export default function Index() {
               <option value="HTML">HTML</option>
               <option value="CSS">CSS</option>
               <option value="JavaScript">JavaScript</option>
+              <option value="TypeScript">TypeScript</option>
               <option value="ReactJs">ReactJs</option>
+              <option value="React Native">React Native</option>
               <option value="NodeJS">NodeJS</option>
               <option value="ExpressJs">ExpressJs</option>
               <option value="MongoDB">MongoDB</option>
@@ -156,7 +198,20 @@ export default function Index() {
                     </div>
                   ))}
                 </div>
-                <button className="view-details-job" onClick={() => onClickViewDetails(jobs._id)}>View details</button>
+                <div className="buttons-view-details">
+                  {loggedIn && <button
+                    className="edit-job"
+                    onClick={() => onClickViewDetails(jobs._id)}
+                  >
+                    Edit Job
+                  </button>}
+                  <button
+                    className="view-details-job"
+                    onClick={() => onClickViewDetails(jobs._id)}
+                  >
+                    View details
+                  </button>
+                </div>
               </div>
             </div>
           </>

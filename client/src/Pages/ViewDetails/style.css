@@ -105,14 +105,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 122rem;
+    height: 130rem;
 }
 
 .full-job-details-view {
     display: flex;
     flex-direction: column;
     width: 109.9rem;
-    height: 110rem;
+    height: 120rem;
     background: #FFFFFF;
     box-shadow: 0px .2rem 3.5rem .1rem rgba(0, 0, 0, 0.1);
     padding: 4rem;

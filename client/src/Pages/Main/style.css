@@ -27,16 +27,18 @@
     line-height: 144.02%;
     text-align: center;
     color: #FFFFFF;
-    position: absolute;
-    left: 4rem;
+    /* position: absolute;
+    left: 4rem; */
 
 }
 
 .buttons-main {
     display: flex;
     gap: 2rem;
-    position: absolute;
-    right: 4rem;
+    /* position: absolute;
+    right: 4rem; */
+    text-align: center;
+    justify-content: center;
 }
 
 .login-main {
@@ -69,6 +71,27 @@
     line-height: 144.02%;
     text-align: center;
     color: #ED5353;
+}
+
+.logout-main,
+.greet-recruiter {
+    cursor: pointer;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.3rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.greet-recruiter {
+    cursor: text;
+}
+
+.avatar-img {
+    width: 8rem;
+    height: 8rem;
 }
 
 .search-engine {
@@ -327,7 +350,7 @@
 }
 
 .box-skill-job {
-    width: 9.5rem;
+    width: 10.5rem;
     height: 3.2rem;
     background: #FFEEEE;
     border-radius: 0.143339rem;
@@ -343,12 +366,33 @@
     flex-wrap: wrap;
 }
 
-.skill-wrapper{
+.skill-wrapper {
     display: flex;
     width: 100%;
     height: 100%;
     justify-content: center;
     align-items: center;
+}
+
+.buttons-view-details{
+    display: flex;
+    gap: 2rem;
+}
+
+.edit-job {
+    cursor: pointer;
+    width: 15.4rem;
+    height: 3.6rem;
+    border: 2px solid #ED5353;
+    border-radius: .39223rem;
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.96115rem;
+    line-height: 144.02%;
+    text-align: center;
+    color: #ED5353;
+    background-color: white;
 }
 
 .view-details-job {

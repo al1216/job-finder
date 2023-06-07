@@ -1,10 +1,7 @@
 import React from "react";
 import "./style.css";
-// import axios from 'axios';
-// import { useNavigate } from "react-router-dom";
 
 export default function LoggedInUsers() {
-//   let navigate = useNavigate();
   return (
     <div className="container-jobPost">
       <div className="left-jobPost">
@@ -81,8 +78,8 @@ export default function LoggedInUsers() {
                     <option value="" selected disabled hidden>
                       Select
                     </option>
-                    \<option value="fullTime">Full Time</option>
-                    <option value="intern">Internship</option>
+                    \<option value="Full Time">Full Time</option>
+                    <option value="Internship">Internship</option>
                   </select>
                 </td>
               </tr>
@@ -95,8 +92,8 @@ export default function LoggedInUsers() {
                     <option value="" selected disabled hidden>
                       Select
                     </option>
-                    \<option value="remote">Remote</option>
-                    <option value="office">Office</option>
+                    \<option value="Remote">Remote</option>
+                    <option value="Office">Office</option>
                   </select>
                 </td>
               </tr>

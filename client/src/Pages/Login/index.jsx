@@ -18,7 +18,7 @@ function Index() {
         localStorage.setItem('email',email);
         
         setTimeout(() => {
-          navigate('/job-post');
+          navigate('/');
         },500);
       }
     }).catch((err) => {
@@ -63,7 +63,7 @@ function Index() {
           <p className="login-caption">
           Don’t have an account?{" "}
             <span onClick={() => {
-              navigate('/');
+              navigate('/register');
             }} className="register-url">
               Sign Up
             </span>
