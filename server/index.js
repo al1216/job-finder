@@ -175,7 +175,7 @@ app.post("/api/login", (req, res) => {
           { token: temp },
           { new: true }
         );
-        // console.log(check.token);
+        console.log(loggedInEmail);
         res.redirect(`${process.env.HOST_URL}/`);
       } else res.redirect(`${process.env.HOST_URL}/login`);
     })
@@ -229,15 +229,16 @@ app.post(
 // check route to throw jwt token
 
 app.get("/check/abc", async (req, res) => {
-  // console.log(loggedInEmail);
+  console.log(loggedInEmail);
   await User.findOne({ email: loggedInEmail })
     .then((user) => {
-      res.json({ status: 200, message: user.token, email: loggedInEmail });
+      res.json({ status: 200, message: user.token, email: loggedInEmail, name:user.name });
     })
     .catch((err) => {
       res.json({
         status: 400,
         message: "Please login or create your account!",
+        err
       });
     });
 

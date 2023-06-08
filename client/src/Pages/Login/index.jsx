@@ -14,9 +14,10 @@ function Index() {
         localStorage.clear();
         let token = res.data.message;
         let email = res.data.email;
+        let name = res.data.name;
         localStorage.setItem('user-token',token);
         localStorage.setItem('email',email);
-        
+        localStorage.setItem('name',name);
         setTimeout(() => {
           navigate('/');
         },500);
