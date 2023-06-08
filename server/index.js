@@ -271,7 +271,7 @@ app.get("/get/jobs", async (req, res) => {
         res.json({ status: 400, message: "No jobs found" });
       });
   }
-  if ((!skillsArr || skillsArr.length === 0) && search.length != 0) {
+  if ((!skillsArr || skillsArr.length === 0) && search && search.length != 0) {
     await Job.find({ jobPosition: { $regex: regex } })
       .then((jobs) => {
         res.json(jobs);
@@ -282,7 +282,10 @@ app.get("/get/jobs", async (req, res) => {
   }
 
   if (skillsArr && search.length != 0) {
-    await Job.find({ jobPosition: { $regex: regex },skills: { $in: skillsArr } })
+    await Job.find({
+      jobPosition: { $regex: regex },
+      skills: { $in: skillsArr },
+    })
       .then((jobs) => {
         res.json(jobs);
       })
@@ -315,6 +318,46 @@ app.get("/abc", async (req, res) => {
     .catch((err) => {
       res.json({ status: 400, message: "No job found with required skills" });
     });
+});
+
+app.post("/api/edit-job-post/:id", async (req, res) => {
+  const { id } = req.params;
+  let {
+    companyName,
+    logoUrl,
+    jobPosition,
+    salary,
+    jobType,
+    jobLocation,
+    location,
+    jobDesc,
+    aboutCompany,
+    skills,
+  } = req.body;
+
+  skills = skills.split(",");
+  for (let i = 0; i < skills.length; i++) {
+    skills[i] = skills[i].trim();
+  }
+
+  await Job.findByIdAndUpdate({_id:id},{
+    companyName,
+    logoUrl,
+    jobPosition,
+    salary,
+    jobType,
+    jobLocation,
+    location,
+    jobDesc,
+    aboutCompany,
+    skills
+  }).then(() => {
+    // res.json({status: 200, message: 'Job edited successfully :)'});
+    res.redirect(`${process.env.HOST_URL}/job-edit-success`);
+  }).catch((err) => {
+    console.log(err);
+    res.redirect(`${process.env.HOST_URL}/error-500`);
+  });
 });
 
 app.listen(process.env.SERVER_PORT, () => {

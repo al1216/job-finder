@@ -101,7 +101,7 @@
     justify-content: center;
     gap: 2rem;
     width: 109.7rem;
-    height: 22.3rem;
+    height: 30rem;
     background: #FFFFFF;
     box-shadow: 0px 0px 2.2rem 0.4rem rgba(255, 32, 32, 0.25);
 }
@@ -145,6 +145,7 @@
     gap: 2rem;
     justify-content: space-between;
     width: 94.6rem;
+    align-items: center;
 }
 
 .skills-select {
@@ -374,7 +375,7 @@
     align-items: center;
 }
 
-.buttons-view-details{
+.buttons-view-details {
     display: flex;
     gap: 2rem;
 }
@@ -409,4 +410,20 @@
     line-height: 144.02%;
     text-align: center;
     color: #FFFFFF;
+}
+
+.add-job-details {
+    width: 18.2rem;
+    height: 5.2rem;
+    background: #ED5353;
+    border-radius: .806897rem;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2.24138rem;
+    line-height: 2.6rem;
+    color: #FFFFFF;
+    border: none;
+    cursor: pointer;
+
 }

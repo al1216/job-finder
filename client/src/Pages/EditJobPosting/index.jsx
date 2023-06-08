@@ -5,7 +5,6 @@ import Error from "../RedirectPages/Error404";
 
 export default function Index() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
   const checkUserToken = () => {
     const token = localStorage.getItem("user-token");
     console.log(token);

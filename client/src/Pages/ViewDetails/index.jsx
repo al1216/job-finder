@@ -31,6 +31,10 @@ export default function Index() {
     localStorage.clear();
     setLoggedIn(false);
   };
+  let onClickEditDetails = (id) => {
+    localStorage.setItem("job_id", id);
+    naviagte("/edit-job-post");
+  };
   return (
     <div className="container-view-details">
       <div className="navbar">
@@ -80,7 +84,8 @@ export default function Index() {
               </h1>
               <p className="job-location-view-details">{`${job.location} | India`}</p>
             </div>
-            <button className="edit-job-view-details">Edit job</button>
+            {loggedIn && <button className="edit-job-view-details" onClick={() => onClickEditDetails(job._id)}>Edit job</button>}
+            {!loggedIn && <button className="edit-job-view-details" disabled>Edit job</button>}
           </div>
           <div className="stipend-duration-view-details">
             <div className="stipend">

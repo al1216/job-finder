@@ -47,6 +47,7 @@ export default function Index() {
 
   let clearSkill = () => {
     setSkillsArr([]);
+    window.location.reload(true)
   };
 
   let onClickViewDetails = (id) => {
@@ -54,6 +55,10 @@ export default function Index() {
     naviagte("/view-details");
   };
 
+  let onClickEditDetails = (id) => {
+    localStorage.setItem("job_id", id);
+    naviagte("/edit-job-post");
+  };
   let onChangeInput = (e) => {
     setSearch(e.target.value);
   };
@@ -62,6 +67,10 @@ export default function Index() {
     localStorage.clear();
     setLoggedIn(false);
   };
+
+  let onClickAddJobPost = () => {
+    naviagte('/job-post');
+  }
 
   return (
     <div className="container-main">
@@ -153,6 +162,12 @@ export default function Index() {
             <p className="skills-clear" onClick={clearSkill}>
               Clear
             </p>
+            {loggedIn && <button
+              className="add-job-details"
+              onClick={() => onClickAddJobPost()}
+            >
+              + Add Job
+            </button>}
           </div>
         </div>
       </div>
@@ -199,12 +214,14 @@ export default function Index() {
                   ))}
                 </div>
                 <div className="buttons-view-details">
-                  {loggedIn && <button
-                    className="edit-job"
-                    onClick={() => onClickViewDetails(jobs._id)}
-                  >
-                    Edit Job
-                  </button>}
+                  {loggedIn && (
+                    <button
+                      className="edit-job"
+                      onClick={() => onClickEditDetails(jobs._id)}
+                    >
+                      Edit Job
+                    </button>
+                  )}
                   <button
                     className="view-details-job"
                     onClick={() => onClickViewDetails(jobs._id)}

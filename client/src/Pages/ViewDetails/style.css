@@ -175,6 +175,11 @@
 
 }
 
+.edit-job-view-details:disabled{
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
 .stipend-duration-view-details {
     display: flex;
     gap: 2rem;
