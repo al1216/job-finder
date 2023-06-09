@@ -238,7 +238,7 @@ app.post(
 // check route to throw jwt token
 
 app.get("/check/abc", async (req, res) => {
-  console.log(loggedInEmail);
+  console.log('check/abc/',loggedInEmail);
   await User.findOne({ email: loggedInEmail })
     .then((user) => {
       res.json({

@@ -11,7 +11,23 @@ export default function Index() {
   let [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
+    axios
+      .get(`${process.env.REACT_APP_HOST}/check/abc`)
+      .then((res) => {
+        let e = res.data.email;
+        let n = res.data.name;
+        let t = res.data.message;
+        localStorage.setItem("email", e);
+        localStorage.setItem("name", n);
+        localStorage.setItem("token", t);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
     let email = localStorage.getItem("email");
+    let token = localStorage.getItem("token");
+    console.log(email, token);
     if (!email || email === "undefined") setLoggedIn(false);
     else setLoggedIn(true);
 
@@ -30,6 +46,10 @@ export default function Index() {
       });
   }, [skillsArr, search]);
 
+  setTimeout(() => {
+    // naviagte(0);
+  }, 1000);
+
   let onChange = (e) => {
     let temp = e.target.value;
     if (!skillsArr.includes(temp)) {
@@ -47,7 +67,7 @@ export default function Index() {
 
   let clearSkill = () => {
     setSkillsArr([]);
-    window.location.reload(true)
+    window.location.reload(true);
   };
 
   let onClickViewDetails = (id) => {
@@ -69,8 +89,8 @@ export default function Index() {
   };
 
   let onClickAddJobPost = () => {
-    naviagte('/job-post');
-  }
+    naviagte("/job-post");
+  };
 
   return (
     <div className="container-main">
@@ -79,7 +99,12 @@ export default function Index() {
         <div className="buttons-main">
           {!loggedIn && (
             <>
-              <button className="login-main" onClick={() => naviagte("/login")}>
+              <button
+                className="login-main"
+                onClick={() => {
+                  naviagte("/login");
+                }}
+              >
                 Login
               </button>
               <button
@@ -162,12 +187,14 @@ export default function Index() {
             <p className="skills-clear" onClick={clearSkill}>
               Clear
             </p>
-            {loggedIn && <button
-              className="add-job-details"
-              onClick={() => onClickAddJobPost()}
-            >
-              + Add Job
-            </button>}
+            {loggedIn && (
+              <button
+                className="add-job-details"
+                onClick={() => onClickAddJobPost()}
+              >
+                + Add Job
+              </button>
+            )}
           </div>
         </div>
       </div>

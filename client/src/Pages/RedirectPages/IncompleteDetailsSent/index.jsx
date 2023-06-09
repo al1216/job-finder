@@ -16,6 +16,14 @@ export default function Index() {
         </div>
 
         <div className="login-register">
+        <button
+            className="submit-register"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Home
+          </button>
           <button
             className="submit-register"
             onClick={() => {

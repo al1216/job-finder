@@ -18,9 +18,10 @@ function Index() {
         localStorage.setItem('user-token',token);
         localStorage.setItem('email',email);
         localStorage.setItem('name',name);
+        
         setTimeout(() => {
           navigate('/');
-        },500);
+        },2000);
       }
     }).catch((err) => {
       console.log(err);

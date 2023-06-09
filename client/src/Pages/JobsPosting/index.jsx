@@ -7,7 +7,7 @@ export default function Index() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const checkUserToken = () => {
-    const token = localStorage.getItem("user-token");
+    const token = localStorage.getItem("token");
     console.log(token);
     if (!token || token === "undefined") {
       setIsLoggedIn(false);
