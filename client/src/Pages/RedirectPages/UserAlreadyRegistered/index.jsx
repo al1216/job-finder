@@ -5,29 +5,26 @@ import { useNavigate } from "react-router-dom";
 export default function Index() {
   let navigate = useNavigate();
 
-  let onClickLogout = () => {
-    localStorage.clear();
-    navigate('/');
-  }
-
   return (
     <div className="container-register">
       <div className="left-register">
         <div className="header-captions-register">
           <h1 className="header-register">
-            Success! Job Posted/Edited Successfully :)
+            Account with the same email-id is already registered. Please login or create your new account !
           </h1>
           <p className="subheader-register">Your personal job finder is here</p>
         </div>
 
         <div className="login-register">
           <button className="submit-register" onClick={() => {
-            navigate('/');
+            navigate('/login');
           }}>
-            Home
+            Login
           </button>
-          <button className="submit-register" onClick={() => onClickLogout()}>
-            Logout
+          <button className="submit-register" onClick={() => {
+            navigate('/register');
+          }}>
+            Register
           </button>
         </div>
       </div>

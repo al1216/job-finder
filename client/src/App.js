@@ -9,6 +9,10 @@ import Main from './Pages/Main';
 import ViewDetails from './Pages/ViewDetails';
 import EditJobPost from './Pages/EditJobPosting';
 import JobEditSuccess from './Pages/RedirectPages/JobEditSuccess';
+import AlreadyRegistered from './Pages/RedirectPages/UserAlreadyRegistered';
+import NotRegistered from './Pages/RedirectPages/UserNotRegistered';
+import MissingFields from './Pages/RedirectPages/IncompleteDetailsSent';
+import NoJobs from './Pages/RedirectPages/NoJobs';
 
 function App() {
   return (
@@ -22,7 +26,11 @@ function App() {
         <Route path="/view-details" element={<ViewDetails></ViewDetails>}></Route>
         <Route path="/error" element={<Error404></Error404>}></Route>
         <Route path="/error-500" element={<Error500></Error500>}></Route>
+        <Route path="/error-400" element={<MissingFields></MissingFields>}></Route>
         <Route path="/job-edit-success" element={<JobEditSuccess></JobEditSuccess>}></Route>
+        <Route path="/user-already-registered" element={<AlreadyRegistered></AlreadyRegistered>}></Route>
+        <Route path="/no-user-found" element={<NotRegistered></NotRegistered>}></Route>
+        <Route path="/no-jobs" element={<NoJobs></NoJobs>}></Route>
       </Routes>
     </div>
   );

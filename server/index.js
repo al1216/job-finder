@@ -36,7 +36,7 @@ const isRegistered = async (req, res, next) => {
   const user = await User.findOne({ email });
   if (user) {
     // res.json({status:1 , message: "Already registered using same email-id, Please log in!" });
-    res.redirect(`${process.env.HOST_URL}/login`);
+    res.redirect(`${process.env.HOST_URL}/user-already-registered`);
   } else {
     // console.log(name, email, number, password, checkbox);
     if (
@@ -57,12 +57,12 @@ const isRegistered = async (req, res, next) => {
       if (password.trim().length < 1) missingFields.push("password");
       if (checkbox === false) missingFields.push("checkbox");
 
-      res.json({
-        status: 2,
-        message: "Please fill all the fields",
-        missingFields,
-      });
-      //   res.redirect('http://localhost:3000/');
+      // res.json({
+      //   status: 400,
+      //   message: "Please fill all the fields",
+      //   missingFields,
+      // });
+      res.redirect(`${process.env.HOST_URL}/error-400`);
     }
   }
 };
@@ -100,19 +100,22 @@ const isFilledJobDetails = (req, res, next) => {
   if (!skills || skills.length <= 0) missingFields.push("skills");
 
   if (missingFields.length >= 1) {
-    res.json({
-      status: 400,
-      message: "Some of your feilds are empty or not valid :(",
-      missingFields,
-    });
+    // res.json({
+    //   status: 400,
+    //   message: "Some of your feilds are empty or not valid :(",
+    //   missingFields,
+    // });
+    res.redirect(`${process.env.HOST_URL}/error-400`);
   } else {
     next();
   }
 };
 
 const isAuthenticated = async (req, res, next) => {
-  if (!loggedInEmail)
-    res.json({ status: 400, message: "You are not registerd yet!" });
+  if (!loggedInEmail) {
+    // res.json({ status: 400, message: "You are not registerd yet!" });
+    res.redirect(`${process.env.HOST_URL}/no-user-found`);
+  }
 
   await User.findOne({ email: loggedInEmail })
     .then((user) => {
@@ -120,7 +123,8 @@ const isAuthenticated = async (req, res, next) => {
         if (jwt.verify(user.token, process.env.JWT_SECRET)) {
           next();
         } else {
-          res.json({ status: 400, message: "You are not registerd yet!" });
+          // res.json({ status: 400, message: "You are not registerd yet!" });
+          res.redirect(`${process.env.HOST_URL}/no-user-found`);
         }
       }
     })
@@ -156,7 +160,7 @@ app.post("/api/register", isRegistered, async (req, res) => {
     token: jwtToken,
   });
 
-  res.redirect(`${process.env.HOST_URL}/login`);
+  res.redirect(`${process.env.HOST_URL}/`);
 });
 
 app.post("/api/login", (req, res) => {
@@ -177,11 +181,15 @@ app.post("/api/login", (req, res) => {
         );
         console.log(loggedInEmail);
         res.redirect(`${process.env.HOST_URL}/`);
-      } else res.redirect(`${process.env.HOST_URL}/login`);
+      } else {
+        // res.redirect(`${process.env.HOST_URL}/login`);
+        res.redirect(`${process.env.HOST_URL}/error-400`);
+      }
     })
     .catch((err) => {
       console.log(err);
-      res.redirect(`${process.env.HOST_URL}/register`);
+      // res.redirect(`${process.env.HOST_URL}/register`);
+      res.redirect(`${process.env.HOST_URL}/error-400`);
     });
 });
 
@@ -222,7 +230,8 @@ app.post(
       skills,
     });
 
-    res.json({ status: 200, message: "Job Posted Successfully" });
+    // res.json({ status: 200, message: "Job Posted Successfully" });
+    res.redirect(`${process.env.HOST_URL}/job-edit-success`);
   }
 );
 
@@ -232,14 +241,20 @@ app.get("/check/abc", async (req, res) => {
   console.log(loggedInEmail);
   await User.findOne({ email: loggedInEmail })
     .then((user) => {
-      res.json({ status: 200, message: user.token, email: loggedInEmail, name:user.name });
+      res.json({
+        status: 200,
+        message: user.token,
+        email: loggedInEmail,
+        name: user.name,
+      });
     })
     .catch((err) => {
-      res.json({
-        status: 400,
-        message: "Please login or create your account!",
-        err
-      });
+      // res.json({
+      //   status: 400,
+      //   message: "Please login or create your account!",
+      //   err,
+      // });
+      res.redirect(`${process.env.HOST_URL}/user-already-registered`);
     });
 
   // res.json({status: 500, message: 'Something went wrong :('})
@@ -260,7 +275,8 @@ app.get("/get/jobs", async (req, res) => {
         res.json(jobs);
       })
       .catch((err) => {
-        res.json({ status: 400, message: "No jobs found" });
+        // res.json({ status: 400, message: "No jobs found" });
+        res.redirect(`${process.env.HOST_URL}/no-jobs`);
       });
   }
   if (skillsArr && search.length === 0) {
@@ -269,7 +285,9 @@ app.get("/get/jobs", async (req, res) => {
         res.json(jobs);
       })
       .catch((err) => {
-        res.json({ status: 400, message: "No jobs found" });
+        // res.json({ status: 400, message: "No jobs found" });
+        res.redirect(`${process.env.HOST_URL}/no-jobs`);
+
       });
   }
   if ((!skillsArr || skillsArr.length === 0) && search && search.length != 0) {
@@ -278,7 +296,9 @@ app.get("/get/jobs", async (req, res) => {
         res.json(jobs);
       })
       .catch((err) => {
-        res.json({ status: 400, message: "No jobs found" });
+        // res.json({ status: 400, message: "No jobs found" });
+        res.redirect(`${process.env.HOST_URL}/no-jobs`);
+
       });
   }
 
@@ -291,7 +311,9 @@ app.get("/get/jobs", async (req, res) => {
         res.json(jobs);
       })
       .catch((err) => {
-        res.json({ status: 400, message: "No jobs found" });
+        // res.json({ status: 400, message: "No jobs found" });
+        res.redirect(`${process.env.HOST_URL}/no-jobs`);
+
       });
   }
 });
@@ -303,7 +325,9 @@ app.get("/get/job/:id", async (req, res) => {
       res.json(job);
     })
     .catch((err) => {
-      res.json({ status: 400, message: "No job found" });
+      // res.json({ status: 400, message: "No job found" });
+      res.redirect(`${process.env.HOST_URL}/no-jobs`);
+
     });
 });
 
@@ -317,7 +341,9 @@ app.get("/abc", async (req, res) => {
       res.json(jobs);
     })
     .catch((err) => {
-      res.json({ status: 400, message: "No job found with required skills" });
+      // res.json({ status: 400, message: "No job found with required skills" });
+      res.redirect(`${process.env.HOST_URL}/no-jobs`);
+
     });
 });
 
@@ -341,24 +367,29 @@ app.post("/api/edit-job-post/:id", async (req, res) => {
     skills[i] = skills[i].trim();
   }
 
-  await Job.findByIdAndUpdate({_id:id},{
-    companyName,
-    logoUrl,
-    jobPosition,
-    salary,
-    jobType,
-    jobLocation,
-    location,
-    jobDesc,
-    aboutCompany,
-    skills
-  }).then(() => {
-    // res.json({status: 200, message: 'Job edited successfully :)'});
-    res.redirect(`${process.env.HOST_URL}/job-edit-success`);
-  }).catch((err) => {
-    console.log(err);
-    res.redirect(`${process.env.HOST_URL}/error-500`);
-  });
+  await Job.findByIdAndUpdate(
+    { _id: id },
+    {
+      companyName,
+      logoUrl,
+      jobPosition,
+      salary,
+      jobType,
+      jobLocation,
+      location,
+      jobDesc,
+      aboutCompany,
+      skills,
+    }
+  )
+    .then(() => {
+      // res.json({status: 200, message: 'Job edited successfully :)'});
+      res.redirect(`${process.env.HOST_URL}/job-edit-success`);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.redirect(`${process.env.HOST_URL}/error-500`);
+    });
 });
 
 app.listen(process.env.SERVER_PORT, () => {
